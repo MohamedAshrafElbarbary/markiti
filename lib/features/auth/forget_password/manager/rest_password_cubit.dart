@@ -12,7 +12,7 @@ class RestPasswordCubit extends Cubit<RestPasswordState> {
   RestPasswordModel? restPasswordModel;
   RestPasswordCubit({required this.api}) : super(RestPasswordInitial());
 
-  restPassword({required String email}) async {
+  Future<void> restPassword({required String email}) async {
     emit(RestPasswordLoading());
     try {
       await api.post(EndPoint.restPassword, data: {ApiKey.email: email});
@@ -22,6 +22,4 @@ class RestPasswordCubit extends Cubit<RestPasswordState> {
       emit(RestPasswordError(message: e.errModel.errorMessage));
     }
   }
-
-  codePassword() {}
 }

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:markiti_app/core/const/app_images.dart';
 import 'package:markiti_app/core/theme/app_color.dart';
 import 'package:markiti_app/core/theme/app_text_style.dart';
 import 'package:markiti_app/core/widgets/custom_button.dart';
 import 'package:markiti_app/core/widgets/custom_text_feild.dart';
-import 'package:markiti_app/features/auth/forget_password/manager/rest_password_cubit.dart';
 import 'package:markiti_app/features/auth/forget_password/view/verification_view.dart';
 import 'package:markiti_app/features/auth/forget_password/view/widgets/forget_password_app_bar.dart';
 

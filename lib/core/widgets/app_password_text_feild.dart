@@ -29,7 +29,7 @@ class _AppPasswordTextFeildState extends State<AppPasswordTextFeild> {
           if (value == null || value.isEmpty) {
             return 'field is required';
           }
-          //   Regex validation for password strength can be added here
+
           return null;
         },
         obscureText: isObscure,

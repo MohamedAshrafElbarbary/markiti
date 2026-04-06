@@ -6,6 +6,9 @@ class EndPoint {
   static String codePassword = "/auth/resetPassCode";
   static String addImage = '/portfoilo/addImage';
   static String getUserData = '/portfoilo/userData';
+  static String getAllProducts = '/home/products?skip=0&limit=10';
+  static const getBrands = "/home/brands";
+  static const getCategory = "/home/categories";
   static String getUserDataEndPoint(dynamic id) {
     return "portfoilo/userData/$id";
   }
@@ -26,4 +29,5 @@ class ApiKey {
   static String image = "image";
   static String user = "user";
   static String role = "role";
+  static String authorization = "Authorization";
 }

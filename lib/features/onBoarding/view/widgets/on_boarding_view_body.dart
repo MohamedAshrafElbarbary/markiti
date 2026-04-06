@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:markiti_app/core/const/app_images.dart';
+import 'package:markiti_app/core/function/cache_helper.dart';
 import 'package:markiti_app/features/auth/sign_in/view/sign_in_view.dart';
 import 'package:markiti_app/features/onBoarding/view/widgets/page_view_item.dart';
 
@@ -56,6 +57,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         ),
         PageViewItem(
           onTap: () {
+            CacheHelper.setBool('isOnBoardingViewSeen', true);
             Navigator.pushReplacementNamed(context, SignInView.routeName);
           },
           controller: pageController,

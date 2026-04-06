@@ -5,16 +5,14 @@ sealed class ProfileState {}
 
 final class ProfileInitial extends ProfileState {}
 
-final class ProfileImageLoading extends ProfileState {}
+// final class ProfileImageLoading extends ProfileState {}
 
-final class ProfileImageSuccess extends ProfileState {}
+// final class ProfileImageSuccess extends ProfileState {}
 
-final class ProfileImageFailure extends ProfileState {
-  final String errorMessage;
-  ProfileImageFailure(this.errorMessage);
-}
-
-final class ProfileUserInitial extends ProfileState {}
+// final class ProfileImageFailure extends ProfileState {
+//   final String errorMessage;
+//   ProfileImageFailure(this.errorMessage);
+// }
 
 final class ProfileUserInfoLoading extends ProfileState {}
 

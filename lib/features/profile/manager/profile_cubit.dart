@@ -10,7 +10,7 @@ part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   final DioConsumer api;
-
+  UserInfoModel? userInfoModel;
   ProfileCubit({required this.api}) : super(ProfileInitial());
 
   Future<void> getUserData() async {
@@ -19,7 +19,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       final response = await api.get(
         EndPoint.getUserDataEndPoint(CacheHelper().getData(key: ApiKey.id)),
       );
-      emit(ProfileUserInfoSuccess(UserInfoModel.fromJson(response.data)));
+      userInfoModel = UserInfoModel.fromJson(response);
+      emit(ProfileUserInfoSuccess(userInfoModel!));
     } on ServerException catch (e) {
       emit(ProfileUserInfoFailure(e.errModel.errorMessage));
     }

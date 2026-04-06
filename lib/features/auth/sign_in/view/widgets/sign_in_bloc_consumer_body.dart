@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:markiti_app/features/auth/sign_in/manager/sign_in_cubit.dart';
 import 'package:markiti_app/features/auth/sign_in/view/widgets/sign_in_view_body.dart';
-import 'package:markiti_app/features/profile/view/profile_view.dart';
+import 'package:markiti_app/features/home/view/home_navigator.dart';
 
 class SignInBlocConsumerBody extends StatelessWidget {
   const SignInBlocConsumerBody({super.key});
@@ -15,7 +15,7 @@ class SignInBlocConsumerBody extends StatelessWidget {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text('Sign in successful')));
-          Navigator.of(context).pushReplacementNamed(ProfileView.routeName);
+          Navigator.of(context).pushReplacementNamed(HomeNavigator.routeName);
         } else if (state is SignInFailure) {
           // Show error message
           ScaffoldMessenger.of(

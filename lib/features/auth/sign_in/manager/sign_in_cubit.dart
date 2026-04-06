@@ -1,34 +1,36 @@
 import 'package:bloc/bloc.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:markiti_app/core/api/api_consumer.dart';
-import 'package:markiti_app/core/api/end_points.dart';
-import 'package:markiti_app/core/errors/exceptions.dart';
-import 'package:markiti_app/core/function/cache_helper.dart';
-import 'package:markiti_app/features/auth/sign_in/model/sign_in_model.dart';
+import 'package:markiti_app/features/auth/sign_in/data/repo/sign_in_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
-  final ApiConsumer api;
-  SignInModel? userInfo;
-  SignInCubit({required this.api}) : super(SignInInitial());
-
+  final SignInRepo signInRepo;
+  // SignInModel? userInfo;
+  SignInCubit({required this.signInRepo}) : super(SignInInitial());
   Future<void> signIn({required String email, required String password}) async {
-    try {
-      emit(SignInLoading());
-      final response = await api.post(
-        EndPoint.signIn,
-        data: {ApiKey.email: email, ApiKey.password: password},
-      );
-      userInfo = SignInModel.fromJson(response);
-      final decodedToken = JwtDecoder.decode(userInfo!.token);
-      // store token and user id in shared preferences
-      CacheHelper().saveData(key: ApiKey.token, value: userInfo!.token);
-      CacheHelper().saveData(key: ApiKey.id, value: decodedToken[ApiKey.id]);
-      emit(SignInSuccess());
-    } on ServerException catch (e) {
-      emit(SignInFailure(e.errModel.errorMessage));
-    }
+    emit(SignInLoading());
+    final response = await signInRepo.signIn(email: email, password: password);
+    response.fold(
+      (errMessage) => emit(SignInFailure(errMessage)),
+      (signInModel) => emit(SignInSuccess()),
+    );
   }
 }
+
+// Future<void> signIn({required String email, required String password}) async {
+//   try {
+//     emit(SignInLoading());
+//     final response = await api.post(
+//       EndPoint.signIn,
+//       data: {ApiKey.email: email, ApiKey.password: password},
+//     );
+//     userInfo = SignInModel.fromJson(response);
+//     final decodedToken = JwtDecoder.decode(userInfo!.token);
+//     CacheHelper().saveData(key: ApiKey.token, value: userInfo!.token);
+//     CacheHelper().saveData(key: ApiKey.id, value: decodedToken[ApiKey.id]);
+//     emit(SignInSuccess());
+//   } on ServerException catch (e) {
+//     emit(SignInFailure(e.errModel.errorMessage));
+//   }
+// }

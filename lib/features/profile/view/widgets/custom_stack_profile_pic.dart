@@ -15,7 +15,7 @@ class CustomStackProfilePic extends StatelessWidget {
         Positioned(
           top: 15,
           width: MediaQuery.of(context).size.width * .75,
-          child: CustomCircleAvatar(),
+          child: CustomCircleAvatar(outterRadius: 70, innerRadius: 68),
         ),
         Positioned(
           bottom: 35,
