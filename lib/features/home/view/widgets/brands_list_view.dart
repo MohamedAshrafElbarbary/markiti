@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:markiti_app/features/home/model/brands_model.dart';
+import 'package:markiti_app/features/home/data/model/brands_model.dart';
 import 'package:markiti_app/features/home/view/widgets/brands_lits_view_item.dart';
 
 class BrandsListView extends StatelessWidget {

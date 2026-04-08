@@ -24,9 +24,9 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   void initState() {
-    context.read<ProductCubit>().getAllProuduct();
+    context.read<ProductCubit>().getAllProduct();
     context.read<ProductCubit>().getBrand();
-    context.read<ProductCubit>().getcategory();
+    context.read<ProductCubit>().getCategory();
     super.initState();
   }
 
@@ -49,7 +49,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             // products
             BlocBuilder<ProductCubit, ProductState>(
               builder: (context, state) {
-                if (state is ProductsSucsess) {
+                if (state is ProductsSuccess) {
                   return PopularProductsListView(
                     productModel: state.productModel,
                   );
@@ -62,7 +62,13 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             ),
             HomeTitleText(
               onTap: () {
-                Navigator.pushNamed(context, CategoriesView.routeName);
+                Navigator.pushNamed(
+                  context,
+                  CategoriesView.routeName,
+                  arguments: BlocProvider.of<ProductCubit>(
+                    context,
+                  ).categoryList,
+                );
               },
               text: 'Category',
             ),
@@ -70,7 +76,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             // category
             BlocBuilder<ProductCubit, ProductState>(
               builder: (context, state) {
-                if (state is CategorySucsess) {
+                if (state is CategorySuccess) {
                   return CategoryGridView(categoryModel: state.categoryModel);
                 } else if (state is CategoryLoading) {
                   return CircularProgressIndicator();
@@ -97,7 +103,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             // brands
             BlocBuilder<ProductCubit, ProductState>(
               builder: (context, state) {
-                if (state is BrandsSucsess) {
+                if (state is BrandsSuccess) {
                   return BrandsListView(brandModel: state.brandModel);
                 } else if (state is BrandsLoading) {
                   return CircularProgressIndicator();

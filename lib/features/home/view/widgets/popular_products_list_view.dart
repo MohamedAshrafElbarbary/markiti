@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:markiti_app/features/home/model/products_model.dart';
+import 'package:markiti_app/features/home/data/model/products_model.dart';
 import 'package:markiti_app/features/home/view/widgets/popular_product_list_view_item.dart';
 
 class PopularProductsListView extends StatelessWidget {

@@ -8,10 +8,10 @@ final class ProductsInitial extends ProductState {}
 // product state
 final class ProductsLoading extends ProductState {}
 
-final class ProductsSucsess extends ProductState {
+final class ProductsSuccess extends ProductState {
   final List<ProductModel> productModel;
 
-  ProductsSucsess({required this.productModel});
+  ProductsSuccess({required this.productModel});
 }
 
 final class ProductsFailure extends ProductState {
@@ -24,10 +24,10 @@ final class ProductsFailure extends ProductState {
 
 final class BrandsLoading extends ProductState {}
 
-final class BrandsSucsess extends ProductState {
+final class BrandsSuccess extends ProductState {
   final List<BrandModel> brandModel;
 
-  BrandsSucsess({required this.brandModel});
+  BrandsSuccess({required this.brandModel});
 }
 
 final class BrandsFailure extends ProductState {
@@ -39,10 +39,10 @@ final class BrandsFailure extends ProductState {
 // category state
 final class CategoryLoading extends ProductState {}
 
-final class CategorySucsess extends ProductState {
+final class CategorySuccess extends ProductState {
   final List<CategoryModel> categoryModel;
 
-  CategorySucsess({required this.categoryModel});
+  CategorySuccess({required this.categoryModel});
 }
 
 final class CategoryFailure extends ProductState {

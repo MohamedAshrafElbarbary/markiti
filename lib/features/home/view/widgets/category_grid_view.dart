@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:markiti_app/features/home/model/category_model.dart';
+import 'package:markiti_app/features/home/data/model/category_model.dart';
 import 'package:markiti_app/features/home/view/widgets/category_item.dart';
 
 class CategoryGridView extends StatelessWidget {

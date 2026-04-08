@@ -3,7 +3,7 @@ import 'package:markiti_app/core/api/dio_consumer.dart';
 import 'package:markiti_app/core/api/end_points.dart';
 import 'package:markiti_app/core/errors/exceptions.dart';
 import 'package:markiti_app/core/function/cache_helper.dart';
-import 'package:markiti_app/features/profile/model/user_info_model.dart';
+import 'package:markiti_app/features/profile/data/model/user_info_model.dart';
 import 'package:meta/meta.dart';
 
 part 'profile_state.dart';
