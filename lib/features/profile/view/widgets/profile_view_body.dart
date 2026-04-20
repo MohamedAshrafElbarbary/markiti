@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:markiti_app/core/const/app_images.dart';
 import 'package:markiti_app/core/theme/app_color.dart';
 import 'package:markiti_app/core/theme/app_text_style.dart';
+import 'package:markiti_app/features/profile/data/model/user_info_model.dart';
 import 'package:markiti_app/features/profile/view/account_preferences_view.dart';
 import 'package:markiti_app/features/profile/view/widgets/custom_dash_board_item.dart';
 import 'package:markiti_app/features/profile/view/widgets/custom_dash_board_switch.dart';
@@ -10,8 +11,8 @@ import 'package:markiti_app/features/profile/view/widgets/profile_app_bar.dart';
 import 'package:markiti_app/features/profile/view/widgets/rating_star.dart';
 
 class ProfileViewBody extends StatelessWidget {
-  const ProfileViewBody({super.key});
-
+  const ProfileViewBody({super.key, required this.userInfoModel});
+  final UserInfoModel userInfoModel;
   @override
   Widget build(BuildContext context) {
     return Column(

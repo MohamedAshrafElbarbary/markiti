@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:markiti_app/core/const/app_images.dart';
 import 'package:markiti_app/core/theme/app_color.dart';
 import 'package:markiti_app/core/theme/app_text_style.dart';
+import 'package:markiti_app/features/home/view/widgets/custom_favorite_icon.dart';
 
 class PopularProductListViewItem extends StatelessWidget {
   final num? price;
   final num? rating;
   final String? name;
+  final String? imageUrl;
   const PopularProductListViewItem({
     super.key,
     this.price,
     this.rating,
     required this.name,
+    this.imageUrl,
   });
 
   @override
@@ -39,25 +41,9 @@ class PopularProductListViewItem extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   // image form api
-                  Image.asset(Assets.assetsImagesSmartWatch),
-                  Positioned(
-                    top: 5,
-                    right: 5,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          size: 30,
-                          Icons.favorite_border_outlined,
-                          color: AppColor.darkBlue900,
-                        ),
-                      ),
-                    ),
-                  ),
+                  Image.network(imageUrl ?? ""),
+                  //  Image.asset(Assets.assetsImagesSmartWatch),
+                  CustomFavoriteIcon(),
                 ],
               ),
             ),

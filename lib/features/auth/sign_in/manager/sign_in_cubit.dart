@@ -17,20 +17,3 @@ class SignInCubit extends Cubit<SignInState> {
     );
   }
 }
-
-// Future<void> signIn({required String email, required String password}) async {
-//   try {
-//     emit(SignInLoading());
-//     final response = await api.post(
-//       EndPoint.signIn,
-//       data: {ApiKey.email: email, ApiKey.password: password},
-//     );
-//     userInfo = SignInModel.fromJson(response);
-//     final decodedToken = JwtDecoder.decode(userInfo!.token);
-//     CacheHelper().saveData(key: ApiKey.token, value: userInfo!.token);
-//     CacheHelper().saveData(key: ApiKey.id, value: decodedToken[ApiKey.id]);
-//     emit(SignInSuccess());
-//   } on ServerException catch (e) {
-//     emit(SignInFailure(e.errModel.errorMessage));
-//   }
-// }

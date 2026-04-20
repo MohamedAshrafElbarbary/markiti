@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:markiti_app/core/api/dio_consumer.dart';
+import 'package:markiti_app/core/services/servise_locator.dart';
 import 'package:markiti_app/core/theme/app_color.dart';
+import 'package:markiti_app/features/home/data/repo/products_repo.dart';
+import 'package:markiti_app/features/home/manager/products_cubit/product_cubit.dart';
 import 'package:markiti_app/features/home/view/cart_view.dart';
 import 'package:markiti_app/features/home/view/favourites_view.dart';
 import 'package:markiti_app/features/home/view/home_view.dart';
@@ -25,34 +30,39 @@ class _HomeNavigatorState extends State<HomeNavigator> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: currentIndex >= 0 && currentIndex < screens.length
-          ? screens[currentIndex]
-          : screens[0],
+    return BlocProvider(
+      create: (context) => ProductCubit(
+        productsRepo: ProductsRepo(api: getIt.get<DioConsumer>()),
+      ),
+      child: Scaffold(
+        body: currentIndex >= 0 && currentIndex < screens.length
+            ? screens[currentIndex]
+            : screens[0],
 
-      //screens[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColor.lightBlue100,
-        unselectedItemColor: AppColor.navGray,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: "Cart",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border_outlined),
-            label: "favourites",
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Menu"),
-        ],
+        //screens[currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: AppColor.lightBlue100,
+          unselectedItemColor: AppColor.navGray,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart),
+              label: "Cart",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border_outlined),
+              label: "favourites",
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Menu"),
+          ],
+        ),
       ),
     );
   }

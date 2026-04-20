@@ -9,9 +9,9 @@ final class ProductsInitial extends ProductState {}
 final class ProductsLoading extends ProductState {}
 
 final class ProductsSuccess extends ProductState {
-  final List<ProductModel> productModel;
+  final List<ProductModel> productModelList;
 
-  ProductsSuccess({required this.productModel});
+  ProductsSuccess({required this.productModelList});
 }
 
 final class ProductsFailure extends ProductState {
@@ -25,9 +25,9 @@ final class ProductsFailure extends ProductState {
 final class BrandsLoading extends ProductState {}
 
 final class BrandsSuccess extends ProductState {
-  final List<BrandModel> brandModel;
+  final List<BrandModel> brandModelList;
 
-  BrandsSuccess({required this.brandModel});
+  BrandsSuccess({required this.brandModelList});
 }
 
 final class BrandsFailure extends ProductState {

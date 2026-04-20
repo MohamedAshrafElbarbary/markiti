@@ -20,6 +20,7 @@ class PopularProductsListView extends StatelessWidget {
               name: productModel[index].title,
               price: productModel[index].price,
               rating: productModel[index].rating,
+              imageUrl: productModel[index].thumbnail,
             ),
           );
         },

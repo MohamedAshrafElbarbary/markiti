@@ -41,6 +41,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             HomeAppBarAndSearchBar(),
             HomeTitleText(
               onTap: () {
+                //TODO  navigation with products
                 Navigator.pushNamed(context, PopularPorductsView.routeName);
               },
               text: 'Popular Product',
@@ -48,13 +49,16 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             const SizedBox(height: 8),
             // products
             BlocBuilder<ProductCubit, ProductState>(
+              buildWhen: (previous, current) {
+                return current is ProductsSuccess;
+              },
               builder: (context, state) {
-                if (state is ProductsSuccess) {
-                  return PopularProductsListView(
-                    productModel: state.productModel,
-                  );
-                } else if (state is ProductsLoading) {
+                if (state is ProductsLoading) {
                   return CircularProgressIndicator();
+                } else if (state is ProductsSuccess) {
+                  return PopularProductsListView(
+                    productModel: state.productModelList,
+                  );
                 } else {
                   return Text('some thing went wrong');
                 }
@@ -62,24 +66,22 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             ),
             HomeTitleText(
               onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  CategoriesView.routeName,
-                  arguments: BlocProvider.of<ProductCubit>(
-                    context,
-                  ).categoryList,
-                );
+                //TODO navigation with category
+                Navigator.pushNamed(context, CategoriesView.routeName);
               },
               text: 'Category',
             ),
             const SizedBox(height: 8),
             // category
             BlocBuilder<ProductCubit, ProductState>(
+              buildWhen: (previous, current) {
+                return current is CategorySuccess;
+              },
               builder: (context, state) {
-                if (state is CategorySuccess) {
-                  return CategoryGridView(categoryModel: state.categoryModel);
-                } else if (state is CategoryLoading) {
+                if (state is CategoryLoading) {
                   return CircularProgressIndicator();
+                } else if (state is CategorySuccess) {
+                  return CategoryGridView(categoryModel: state.categoryModel);
                 } else {
                   return Text('some thing went wrong');
                 }
@@ -96,17 +98,22 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             //
             HomeTitleText(
               onTap: () {
+                //TODO navigation with all brands
                 Navigator.pushNamed(context, BrandsView.routeName);
               },
               text: 'Brands',
             ),
             // brands
             BlocBuilder<ProductCubit, ProductState>(
+              // مينفعش كذا bloc builder نفس في المكان كدا هيحصل conflect
+              buildWhen: (previous, current) {
+                return current is BrandsSuccess;
+              },
               builder: (context, state) {
-                if (state is BrandsSuccess) {
-                  return BrandsListView(brandModel: state.brandModel);
-                } else if (state is BrandsLoading) {
+                if (state is BrandsLoading) {
                   return CircularProgressIndicator();
+                } else if (state is BrandsSuccess) {
+                  return BrandsListView(brandList: state.brandModelList);
                 } else {
                   return Text('some thing went wrong');
                 }
